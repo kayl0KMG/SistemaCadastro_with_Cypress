@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Cadastro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>Sistema de Cadastro</h1>
+    <p class="subtitulo">Clientes e Produtos — dados mantidos em memória</p>
+  </header>
+
+  <nav class="abas" role="tablist">
+    <button type="button" id="abaClientes" class="aba" data-aba="clientes"
+            role="tab" aria-controls="secClientes">
+      Clientes <span class="contador" id="contadorClientes">0</span>
+    </button>
+    <button type="button" id="abaProdutos" class="aba" data-aba="produtos"
+            role="tab" aria-controls="secProdutos">
+      Produtos <span class="contador" id="contadorProdutos">0</span>
+    </button>
+  </nav>
+
+  <main>
+    <!-- ═════════════ CLIENTES ═════════════ -->
+    <section id="secClientes" class="painel" role="tabpanel">
+      <form id="formCliente" class="cartao" novalidate>
+        <h2 id="tituloFormCliente">Novo cliente</h2>
+        <input type="hidden" id="clienteId">
+
+        <label for="clienteNome">Nome *</label>
+        <input type="text" id="clienteNome" placeholder="Ex.: Ana Souza">
+
+        <label for="clienteEmail">E-mail *</label>
+        <input type="text" id="clienteEmail" placeholder="ana@email.com">
+
+        <label for="clienteTelefone">Telefone</label>
+        <input type="text" id="clienteTelefone" placeholder="(88) 99999-0000">
+
+        <div class="botoes">
+          <button type="submit" id="btnSalvarCliente" class="btn btn-primario">Cadastrar</button>
+          <button type="button" id="btnCancelarCliente" class="btn btn-secundario" hidden>Cancelar</button>
+        </div>
+        <p id="msgCliente" class="mensagem" role="status"></p>
+      </form>
+
+      <div class="cartao">
+        <div class="cabecalho-lista">
+          <h2>Clientes cadastrados</h2>
+          <input type="search" id="buscaCliente" placeholder="Buscar por nome ou e-mail">
+        </div>
+        <table id="tabelaClientes">
+          <thead>
+            <tr><th>Nome</th><th>E-mail</th><th>Telefone</th><th>Ações</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="vazioClientes" class="vazio">Nenhum cliente cadastrado</p>
+      </div>
+    </section>
+
+    <!-- ═════════════ PRODUTOS ═════════════ -->
+    <section id="secProdutos" class="painel" role="tabpanel" hidden>
+      <form id="formProduto" class="cartao" novalidate>
+        <h2 id="tituloFormProduto">Novo produto</h2>
+        <input type="hidden" id="produtoId">
+
+        <label for="produtoNome">Nome *</label>
+        <input type="text" id="produtoNome" placeholder="Ex.: Café 500g">
+
+        <label for="produtoPreco">Preço (R$) *</label>
+        <input type="number" id="produtoPreco" step="0.01" min="0" placeholder="0,00">
+
+        <label for="produtoEstoque">Estoque *</label>
+        <input type="number" id="produtoEstoque" step="1" min="0" placeholder="0">
+
+        <label for="produtoCategoria">Categoria *</label>
+        <select id="produtoCategoria">
+          <option value="">Selecione...</option>
+        </select>
+
+        <div class="botoes">
+          <button type="submit" id="btnSalvarProduto" class="btn btn-primario">Cadastrar</button>
+          <button type="button" id="btnCancelarProduto" class="btn btn-secundario" hidden>Cancelar</button>
+        </div>
+        <p id="msgProduto" class="mensagem" role="status"></p>
+      </form>
+
+      <div class="cartao">
+        <div class="cabecalho-lista">
+          <h2>Produtos cadastrados</h2>
+          <input type="search" id="buscaProduto" placeholder="Buscar por nome ou categoria">
+        </div>
+        <table id="tabelaProdutos">
+          <thead>
+            <tr><th>Nome</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="vazioProdutos" class="vazio">Nenhum produto cadastrado</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- A ordem importa: o Store precisa existir antes das telas -->
+  <script src="store.js"></script>
+  <script src="clientes.js"></script>
+  <script src="produtos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
